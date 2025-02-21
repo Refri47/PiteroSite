@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzaria Johnny's House</title>
+    <link rel="stylesheet" href="janelas/janelas/StyleEL.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Pitéro</div>
+        <div class="nav-links">
+            <a href="#produtos">Produtos</a>
+            <a href="#categorias" onclick="toggleSidebar()">Categorias</a>
+            <a href="#clientes">Clientes</a>
+            <a href="#contato">Contato</a>
+        </div>
+    </nav>
+
+    <div class="store-header">
+        <div class="store-profile">
+            <div class="owner-info">
+                <img src="https://via.placeholder.com/100x100.png?text=Dono" class="owner-photo" alt="Dono da Loja">
+                <div class="store-meta">
+                    <h1 id="store-name">Pizzaria Johnny's House</h1>
+                    <div class="store-details">
+                        <span><i class="fas fa-star"></i> 4.8 (1.2k avaliações)</span>
+                        <span><i class="fas fa-clock"></i> 10-150 min</span>
+                        <span><i class="fas fa-tag"></i> Ped. mínimo R$22,00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="edit-section">
+        <h2>Editar Loja</h2>
+        <input type="text" id="edit-store-name" placeholder="Novo nome da loja">
+        <input type="file" id="edit-background-image" accept="image/*">
+        <button onclick="updateStore()">Atualizar Loja</button>
+    </div>
+
+    <div class="edit-section">
+        <h2>Adicionar Produto</h2>
+        <input type="text" id="product-title" placeholder="Nome do Produto">
+        <input type="text" id="product-category" placeholder="Categoria">
+        <input type="number" id="product-price" placeholder="Preço">
+        <input type="file" id="product-image" accept="image/*">
+        <textarea id="product-description" placeholder="Descrição do Produto"></textarea>
+        <button onclick="addProduct()">Adicionar Produto</button>
+    </div>
+
+    <div class="main-content">
+        <div class="products-grid" id="produtos">
+            <!-- Produtos serão adicionados dinamicamente aqui -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Navegação</h4>
+                <div class="footer-links">
+                    <a href="#produtos">Produtos</a>
+                    <a href="#categorias">Categorias</a>
+                    <a href="#clientes">Clientes</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Suporte</h4>
+                <div class="footer-links">
+                    <a href="#contato">Contato</a>
+                    <a href="#">Garantia</a>
+                    <a href="#">FAQ</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Empresa</h4>
+                <div class="footer-links">
+                    <a href="#">Sobre Nós</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Carreiras</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Função para atualizar o nome da loja e a imagem de fundo
+        function updateStore() {
+            const storeName = document.getElementById('edit-store-name').value;
+            const backgroundImage = document.getElementById('edit-background-image').files[0];
+
+            if (storeName) {
+                document.getElementById('store-name').innerText = storeName;
+            }
+
+            if (backgroundImage) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.querySelector('.store-header').style.backgroundImage = `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${e.target.result})`;
+                };
+                reader.readAsDataURL(backgroundImage);
+            }
+        }
+
+        // Função para adicionar um novo produto
+        function addProduct() {
+            const title = document.getElementById('product-title').value;
+            const category = document.getElementById('product-category').value;
+            const price = document.getElementById('product-price').value;
+            const image = document.getElementById('product-image').files[0];
+            const description = document.getElementById('product-description').value;
+
+            if (title && category && price && image && description) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    productCard.dataset.category = category.toLowerCase();
+
+                    productCard.innerHTML = `
+                        <img src="${e.target.result}" alt="${title}" class="product-image">
+                        <h3 class="product-title">${title}</h3>
+                        <p class="product-category">${category}</p>
+                        <div class="product-price">R$ ${price}</div>
+                        <p class="product-description">${description}</p>
+                        <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    `;
+
+                    document.getElementById('produtos').appendChild(productCard);
+                };
+                reader.readAsDataURL(image);
+            } else {
+                alert('Por favor, preencha todos os campos.');
+            }
+        }
+
+        // Função para filtrar produtos por categoria
+        function filterCategory(category) {
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                if(category === 'todos') {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = product.dataset.category === category ? 'block' : 'none';
+                }
+            });
+            toggleSidebar();
+        }
+
+        // Função para alternar a visibilidade da sidebar
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
