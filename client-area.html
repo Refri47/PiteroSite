@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Cliente - Pitéro</title>
-    <link rel="stylesheet" href="janelas/janelas/Suporte.css">
+    <link rel="stylesheet" href="janelas/janelas/styleCA.css">
     <link rel="icon" href="favicon.ico">
 </head>
 <body>
     <nav class="navbar">
         <a href="index.html" class="logo">Pitéro</a>
         <div class="nav-links">
-            <a href="Planos.html">Planos</a>
             <a href="NossasLojas.html">Nossas Lojas</a>
             <a href="client-area.html">Clientes</a>
             <a href="QuemSomos.html">Quem Somos</a>
@@ -19,21 +18,47 @@
     </nav>
 
     <main>
+        <div class="main-content">
+            <div class="create-store-form">
+                <h1>Crie sua Loja</h1>
+                <form id="store-form">
+                    <div class="form-group">
+                        <label for="store-name">Nome da Loja</label>
+                        <input type="text" id="store-name" placeholder="Digite o nome da sua loja" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="store-background">Background da Loja</label>
+                        <input type="file" id="store-background" accept="image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="store-profile">Foto de Perfil</label>
+                        <input type="file" id="store-profile" accept="image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="store-description">Descrição da Loja</label>
+                        <textarea id="store-description" placeholder="Avaliações, tempo de entrega, pedido mínimo..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <a href="SuaLoja.html" class="cta-button">Salvar Loja</a>
+                    </div>
+                </form>
+            </div>
+        </div>
     
+        <script src="SuaLoja.js"></script>
     </main>
 
     <footer class="footer">
-      <div class="footer-grid">
-          <div class="footer-section">
-              <h4>NexaHost</h4>
-              <div class="footer-links">
-                  <a href="#">Sobre Nós</a>
-                  <a href="#">Blog</a>
-                  <a href="#">Carreiras</a>
-              </div>
-          </div>
-          <!-- Adicione mais seções -->
-      </div>
-  </footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Pitéro</h4>
+                <div class="footer-links">
+                    <a href="QuemSomos.html">Sobre Nós</a>
+                    <a href="NossasLojas.html">Nossas Lojas/Clietes</a>
+                    <a href="Suporte.html">Suporte, Contate-nos </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

@@ -17,9 +17,10 @@ body {
     background: var(--light);
     color: var(--dark);
     line-height: 1.6;
+    position: relative;
 }
 
-/* Navbar Estilizada */
+/* Navbar */
 .navbar {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -57,6 +58,78 @@ body {
     color: var(--primary);
 }
 
+/* Main Content */
+.main-content {
+    margin-top: 100px;
+    padding: 2rem 5%;
+}
+
+.create-store-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.create-store-form h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--dark);
+}
+
+.form-group input[type="file"] {
+    padding: 0.5rem;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.cta-button {
+    background: var(--gradient);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.cta-button:hover {
+    opacity: 0.9;
+}
+
+/* Footer */
 .footer {
     background: var(--dark);
     color: white;
@@ -88,20 +161,18 @@ body {
     color: var(--primary);
 }
 
-.social-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-}
+/* Responsividade */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
 
-.social-links a {
-    width: 40px;
-    height: 40px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    transition: all 0.3s ease;
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .create-store-form {
+        padding: 1rem;
+    }
 }

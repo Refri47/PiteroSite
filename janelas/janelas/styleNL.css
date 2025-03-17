@@ -57,6 +57,143 @@ body {
     color: var(--primary);
 }
 
+/* Estilos para a seção de lojas */
+.lojas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    gap: 2rem; /* Espaçamento entre as lojas */
+    padding: 5rem 5% 3rem;
+    margin-top: 4rem;
+}
+
+/* Estilos para telas menores (responsividade) */
+@media (max-width: 1024px) {
+    .lojas {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .lojas {
+        grid-template-columns: 1fr; /* 1 coluna em celulares */
+    }
+}
+
+.loja-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.loja-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.loja-header {
+    position: relative;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+    text-align: center;
+}
+
+.loja-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.loja-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid white;
+    z-index: 1;
+}
+
+.loja-nome {
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    z-index: 1;
+}
+
+.loja-info {
+    padding: 1.5rem;
+    background: white;
+}
+
+.loja-info p {
+    margin: 0.5rem 0;
+    color: var(--dark);
+}
+
+.loja-botao {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--gradient);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.loja-botao:hover {
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+}
+
+/* Estilos para o botão fixo */
+.botao-fixo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 1rem 2rem;
+    background: var(--gradient);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000; /* Garante que o botão fique acima de outros elementos */
+}
+
+.botao-fixo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Ajuste para quando o botão chegar perto do footer */
+@media (min-width: 768px) {
+    .botao-fixo {
+        bottom: 20px;
+    }
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+    .botao-fixo {
+        bottom: 10px;
+        right: 10px;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
 .footer {
     background: var(--dark);
     color: white;
@@ -86,22 +223,4 @@ body {
 
 .footer-links a:hover {
     color: var(--primary);
-}
-
-.social-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.social-links a {
-    width: 40px;
-    height: 40px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    transition: all 0.3s ease;
 }
